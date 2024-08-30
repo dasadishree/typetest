@@ -20,3 +20,24 @@ const htmlArr = textArr.map((item, index, array) => {
     }
     return `<span class="char" id="span${index}">${item}</span>`;
 });
+
+let errors = [];
+textContainer.innerHTML = htmlArr.join('');
+let firstTime = true;
+let currentPos = 0;
+let backspaceNeeded = false;
+let currentTime = 0;
+let repeat;
+
+document.addEventListener('keydown', event => {
+    if (event.key === ' ') {
+        event.preventDefault();
+    }
+    if (firstTime) {
+        firstTime = false;
+        repeat = setInterval(() => currentTime++, 1000);
+    }
+    if (event.location === 0 && !invalidKeys.includes(event.key)) {
+        handleKey(event.key);
+    }
+});
