@@ -41,3 +41,48 @@ document.addEventListener('keydown', event => {
         handleKey(event.key);
     }
 });
+
+function handleKey(key) {
+    let span = document.getElementById(`span${currentPos}`).style;
+    if (!backspaceNeeded) {
+        if (key === textArr[currentPos]) {
+            span.color = 'green';
+            currentPos++;
+        } else {
+            if (textArr[currentPos] === ' ') {
+                span.backgroundColor = 'red';
+            } else {
+                span.color = 'red';
+            }
+            backspaceNeeded = true;
+            errors.push(textArr[currentPos]);
+        }
+    } else {
+        if (event.key === 'Backspace') {
+            if (textArr[currentPos] === ' ') {
+                span.backgroundColor = 'transparent';
+            } else {
+                span.color = 'black';
+            }
+            backspaceNeeded = false;
+        }
+    }
+    if (currentPos === textArr.length) {
+        clearInterval(repeat);
+        handleEnd();
+    }
+}
+
+function handleEnd() {
+    let wpm = Math.floor(textArr.length / 5 / (currentTime / 60));
+    let accuracy = Math.floor(
+        ((textArr.length - errors.length) / textArr.length) * 100,
+    );
+    let multiples = Math.floor(currentTime / 60);
+    let seconds = currentTime - multiples * 60;
+    wpmText.innerHTML = `${wpm} wpm`;
+    accuracyText.innerHTML = `${accuracy}%`;
+    timeText.innerHTML = `${multiples} m ${seconds} s`;
+    main.style.display = 'none';
+    resultsContainer.style.display = 'block';
+}
