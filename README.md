@@ -7,4 +7,4 @@ type out the shown sentence as fast as you can! if you make a mistake, press bac
 
 # details
 HTML, CSS, JS
-time: 
+time: 3 hours
