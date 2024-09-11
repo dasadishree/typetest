@@ -2,6 +2,9 @@
 
 created a typing test that measures your WPM and accuracy using HTML, CSS, and JS
 
+https://dasadishree.github.io/typetest/
+finished link !!
+
 # how to use
 type out the shown sentence as fast as you can! if you make a mistake, press backspace and try again
 
